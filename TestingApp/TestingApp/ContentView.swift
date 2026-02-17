@@ -101,6 +101,7 @@ struct ContentView: View {
                 brandId: brandID,
                 projectId: zoneID
             )
+            //Add wait function, possibly a better way to run this also.
             
             isInitialized = true
             initializationStatus = "✓ Initialization passed successfully"
@@ -116,6 +117,13 @@ struct ContentView: View {
     
     private func evaluateAndDisplayIntercept() {
         displayStatus = "Evaluating intercept..."
+        //Setting the Const Values here before we eval and display.
+        Qualtrics.shared.properties.setString(string: "sdkTest", for: "test")
+        //Time spent in app needs no further addition other than waiting the correct length of time
+        
+        //Need to add ViewController for ViewCounts
+        //Needs XMD link for the Qualtrics Survey logic.
+        
         
         Qualtrics.shared.evaluateIntercept(
             for: interceptID
@@ -125,6 +133,7 @@ struct ContentView: View {
                     isDisplayed = true
                     displayStatus = "✓ Intercept evaluation passed - Intercept ID: SI_bQTjH716jE5OOCq"
                     print("[Qualtrics] ✓ Intercept evaluation passed for ID: SI_bQTjH716jE5OOCq")
+                    
                     
                     // Display the intercept
                     if let keyWindow = UIApplication.shared.connectedScenes
